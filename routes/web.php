@@ -18,3 +18,4 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::resource('/orangtua', 'OrangtuaController');
+Route::resource('/anak', 'AnakController');
