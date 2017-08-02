@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\orangtua;
-use App\anak;
+use App\author;
 
-class AnakController extends Controller
+class AuthorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,8 @@ class AnakController extends Controller
     public function index()
     {
         //
-        $anak = anak::all();
-        return view('anak.index',compact('anak'));
+        $author = author::all();
+        return view ('author.index',compact('author'));
     }
 
     /**
@@ -28,8 +27,7 @@ class AnakController extends Controller
     public function create()
     {
         //
-        $ortu = orangtua::all();
-        return view('anak.create',compact('ortu'));
+        return view('author.create');
     }
 
     /**
@@ -41,13 +39,10 @@ class AnakController extends Controller
     public function store(Request $request)
     {
         //
-        $ortu = new anak;
-        $ortu->nama=$request->a;
-        $ortu->orangtua_id=$request->b;
-        $ortu->umur=$request->c;
-        $ortu->alamat=$request->d;
-        $ortu->save();
-        return redirect('anak');
+        $author = new author;
+        $author->nama=$request->nama;
+        $author->save();
+        return redirect('author');
     }
 
     /**
@@ -59,9 +54,8 @@ class AnakController extends Controller
     public function show($id)
     {
         //
-         $anak = anak::findOrFail($id);
-         $ortu = orangtua::all();
-         return view('anak.show',compact('anak','ortu'));
+        $author = author::findOrFail($id);
+        return view ('author.show',compact('author'));
     }
 
     /**
@@ -73,9 +67,8 @@ class AnakController extends Controller
     public function edit($id)
     {
         //
-        $anak = anak::findOrFail($id);
-        $ortu = orangtua::all();
-        return view('anak.edit',compact('anak','ortu'));
+        $author=author::findOrFail($id);
+        return view ('author.edit',compact('author'));
     }
 
     /**
@@ -88,13 +81,10 @@ class AnakController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $ortu = anak::findOrFail($id);
-        $ortu->nama=$request->a;
-        $ortu->orangtua_id=$request->b;
-        $ortu->umur=$request->c;
-        $ortu->alamat=$request->d;
-        $ortu->save();
-        return redirect('anak');
+         $author=author::findOrFail($id);
+         $author->nama=$request->nama;
+         $author->save();
+         return redirect('author');
     }
 
     /**
@@ -106,8 +96,8 @@ class AnakController extends Controller
     public function destroy($id)
     {
         //
-        $anak= anak::findOrFail($id);
-        $anak->delete();
-        return redirect('anak');
+        $author= author::findOrFail($id);
+        $author->delete();
+        return redirect('author');
     }
 }

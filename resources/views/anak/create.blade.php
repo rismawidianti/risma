@@ -10,7 +10,9 @@
 
 <div class="panel-body">
 	<form action="{{route('anak.create')}}" method="post">
-		{{csrf_field()}};
+	<input type="hidden" name="_method" value="PUT">
+	<input type="hidden" name="_token" value="{{csrf_token()}}">
+	
 		
 		<div class="form-group">
 		   <label class="control-lable">Nama</label>
