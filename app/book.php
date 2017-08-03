@@ -10,8 +10,9 @@ class book extends Model
      protected $table = 'books';
      protected $fillable =['title','author','amount','cover'];
      protected $visible  =['title','author','amount','cover'];
-      public function book()
+
+      public function author()
  {
-  return $this->belongsTo('App\book','author_id');
+  return $this->belongsTo('App\author','author_id');
  }
 }

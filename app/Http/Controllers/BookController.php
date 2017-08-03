@@ -51,9 +51,9 @@ class BookController extends Controller
         if ($request->hasFile('cover')) {
             $books = $request->file('cover');
             $extension = $books->getClientOriginalExtension();
-            $filename = str_random(6). ',' .$extension;
+            $filename = str_random(6). ',' . $extension;
             $destinationPath = public_path() . DIRECTORY_SEPARATOR. '/img';
-            $book->move($destinationPath,$filename);
+            $books->move($destinationPath,$filename);
             $book->cover = $filename;
 
             $book->save();
@@ -88,7 +88,8 @@ class BookController extends Controller
     {
         //
         $book = book::findOrFail($id);
-        return view ('book.edit',compact('book'));
+        $author = author::all();
+        return view ('book.edit',compact('book','author'));
     }
 
     /**
@@ -104,9 +105,16 @@ class BookController extends Controller
          $book=book::findOrFail($id);
          $book->title=$request->title;
          $book->amount=$request->amount;
-         $book->cover=$request->cover;
+         if ($request->hasFile('cover')) {
+            $books = $request->file('cover');
+            $extension = $books->getClientOriginalExtension();
+            $filename = str_random(6). ',' . $extension;
+            $destinationPath = public_path() . DIRECTORY_SEPARATOR. '/img';
+            $books->move($destinationPath,$filename);
+            $book->cover = $filename;
          $book->save();
          return redirect('book');
+     }
     }
 
     /**

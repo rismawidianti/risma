@@ -13,7 +13,7 @@
 				<thead>
 					<tr>
 						<th>Title</th>
-						<th>Author_id</th>
+						<th>Author</th>
                          <th>Amount</th>
                          <th>Cover</th>
 						<th colspan="3">Action</th>
@@ -25,9 +25,9 @@
 						<td>{{$data->title}}</td>
 						<td>{{$data->author->nama}}</td>
 						<td>{{$data->amount}}</td>
-						<td>{{$data->cover}}</td>
+						
 				<td>
-					<img src="{{assets('/img/' .$data->cover.'')}}" width="70" height="70">
+					<img src="{{asset('/img/' .$data->cover.'')}}" width="70" height="70">
 				</td>
 						<td>
 							<a class="btn btn-warning" href="/book/{{$data->id}}/edit">Edit</a>
